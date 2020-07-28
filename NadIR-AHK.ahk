@@ -3,9 +3,17 @@
 ;Año: 2020
 ;Licencia: GPL 3.0
 
-
+#include nvda.ahk
 SetTitleMatchMode,2
 #IfWinActive,NadIR 
+;sonido de inicio
+SoundPlay,sounds/start.wav
+;mensaje de inicio
+if (A_languaje = *"0a")
+nvdaSpeak("NadIr-AHK activado")
+else
+nvdaSpeak("NadIR-AHK ready")
+Return
 
 ;cargar impulso del canal 1 
 1::MouseClick,LEFT,132,202,1
@@ -33,9 +41,23 @@ c::MouseClick,LEFT,741, 141,1
 MouseClick,LEFT,379, 52,1
 PixelGetColor,color3,379,52
 if (color3=0xF2F2F2)
-SoundPlay,sonidos/off.wav
+{
+SoundPlay,sounds/off.wav
+if (A_languaje = *"0a")
+nvdaSpeak("NadIR apagado")
 else
-SoundPlay,sonidos/on.wav
+nvdaSpeak("NadIR off")
+Return
+}
+else
+{
+SoundPlay,sounds/on.wav
+if (A_languaje = *"0a")
+nvdaSpeak("NadIR encendido")
+else
+nvdaSpeak("NadIR on")
+Return
+}
 Return
 }
 
@@ -45,9 +67,23 @@ Return
 MouseClick,LEFT,115,199,1
 PixelGetColor,color1,115,199
 if (color1=0x202020)
-SoundPlay,sonidos/on.wav
+{
+SoundPlay,sounds/off.wav
+if (A_languaje = *"0a")
+nvdaSpeak("Canal 1 apagado")
 else
-SoundPlay,sonidos/off.wav
+nvdaSpeak("Channel 1 off")
+Return
+}
+else
+{
+SoundPlay,sounds/on.wav
+if (A_languaje = *"0a")
+nvdaSpeak("Canal 1 encendido")
+else
+nvdaSpeak("Channel 1 on")
+Return
+}
 Return
 }
 
@@ -57,8 +93,22 @@ Return
 MouseClick,LEFT,535,199,1
 PixelGetColor,color2,535,199
 if (color2=0x999999)
-SoundPlay,sonidos/on.wav
+{
+SoundPlay,sounds/off.wav
+if (A_languaje = *"0a")
+nvdaSpeak("Canal 2 apagado")
 else
-SoundPlay,sonidos/off.wav
+nvdaSpeak("Channel 2 off")
+Return
+}
+else
+{
+SoundPlay,sounds/on.wav
+if (A_languaje = *"0a")
+nvdaSpeak("Canal 2 encendido")
+else
+nvdaSpeak("Channel 2 on")
+Return
+}
 Return
 }
