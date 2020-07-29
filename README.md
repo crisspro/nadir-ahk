@@ -8,7 +8,7 @@ Tested with:
 *Audacity v2.3.3 32bits.
 * Windows10 1909 64bits.
 
-##Usage
+## Usage
 
 1. Run NadIR-AHK.
 2. Open NadIR VST plugin and use the hotkeys (read the documentation)

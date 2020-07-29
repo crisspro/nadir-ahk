@@ -12,9 +12,9 @@ SetTitleMatchMode,2
 SoundPlay,sounds/start.wav
 ;mensaje de inicio
 if (A_languaje = *"0a")
-nvdaSpeak("NadIR-AHK" version "activado")
+nvdaSpeak("NadIR-AHK activado")
 else
-nvdaSpeak("NadIR-AHK" version "ready")
+nvdaSpeak("NadIR-AHK ready")
 Return
 
 ;cargar impulso del canal 1 
