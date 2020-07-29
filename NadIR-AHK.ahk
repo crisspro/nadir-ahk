@@ -3,6 +3,8 @@
 ;Año: 2020
 ;Licencia: GPL 3.0
 
+version:= "1.1"
+
 #include nvda.ahk
 SetTitleMatchMode,2
 #IfWinActive,NadIR 
@@ -10,9 +12,9 @@ SetTitleMatchMode,2
 SoundPlay,sounds/start.wav
 ;mensaje de inicio
 if (A_languaje = *"0a")
-nvdaSpeak("NadIr-AHK activado")
+nvdaSpeak("NadIR-AHK" version "activado")
 else
-nvdaSpeak("NadIR-AHK ready")
+nvdaSpeak("NadIR-AHK" version "ready")
 Return
 
 ;cargar impulso del canal 1 
