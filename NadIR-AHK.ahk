@@ -1,9 +1,9 @@
 ;Nombre: NadIr-AHK
 ;Autor: Crisspro
 ;Año: 2020
-;Licencia: GPL 3.0
+;Licencia: GPL-3.0
 
-version:= "1.1"
+version:= "1.2"
 
 #include nvda.ahk
 SetTitleMatchMode,2
@@ -11,7 +11,7 @@ SetTitleMatchMode,2
 ;sonido de inicio
 SoundPlay,sounds/start.wav
 ;mensaje de inicio
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("NadIR-AHK activado")
 else
 nvdaSpeak("NadIR-AHK ready")
@@ -45,7 +45,7 @@ PixelGetColor,color3,379,52
 if (color3=0xF2F2F2)
 {
 SoundPlay,sounds/off.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("NadIR apagado")
 else
 nvdaSpeak("NadIR off")
@@ -54,7 +54,7 @@ Return
 else
 {
 SoundPlay,sounds/on.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("NadIR encendido")
 else
 nvdaSpeak("NadIR on")
@@ -71,7 +71,7 @@ PixelGetColor,color1,115,199
 if (color1=0x202020)
 {
 SoundPlay,sounds/off.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("Canal 1 apagado")
 else
 nvdaSpeak("Channel 1 off")
@@ -80,7 +80,7 @@ Return
 else
 {
 SoundPlay,sounds/on.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("Canal 1 encendido")
 else
 nvdaSpeak("Channel 1 on")
@@ -97,7 +97,7 @@ PixelGetColor,color2,535,199
 if (color2=0x999999)
 {
 SoundPlay,sounds/off.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("Canal 2 apagado")
 else
 nvdaSpeak("Channel 2 off")
@@ -106,7 +106,7 @@ Return
 else
 {
 SoundPlay,sounds/on.wav
-if (A_languaje = *"0a")
+if (InStr(A_language,"0a") = "3")
 nvdaSpeak("Canal 2 encendido")
 else
 nvdaSpeak("Channel 2 on")
