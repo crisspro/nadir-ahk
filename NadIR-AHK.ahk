@@ -19,6 +19,7 @@ Return
 
 ;cargar impulso del canal 1 
 1::MouseClick,LEFT,132,202,1
+
 ;siguiente impulso del canal 1
 f::
 {
@@ -31,15 +32,44 @@ return
 }
 
 ; anterior impulso del canal 1
-d::MouseClick, LEFT,111, 221,h1
+d::
+{
+MouseClick, LEFT,111, 221,h1
+if (InStr(A_language,"0a") = "3")
+nvdaSpeak("Anterior")
+else
+nvdaSpeak("Back")
+return
+}
+
 ; lista de impulsos del canal 1
 s::MouseClick LEFT,228,216,ass 1
+
 ; cargar impulso del canal 2
 2::MouseClick, LEFT,570, 205,1
+
 ;siguiente impulso del canal 2
-k::MouseClick, LEFT,793, 221,1
-;anterior impulso del canal 2f
-j::MouseClick, LEFT,540,222,1
+k::
+{
+MouseClick, LEFT,793, 221,1
+if (InStr(A_language,"0a") = "3")
+nvdaSpeak("Siguiente")
+else
+nvdaSpeak("Next")
+return
+}
+
+;anterior impulso del canal 2
+j::
+{
+MouseClick, LEFT,540,222,1
+if (InStr(A_language,"0a") = "3")
+nvdaSpeak("Anterior")
+else
+nvdaSpeak("Back")
+return
+}
+
 ;lista de impulsos del canal 2
 l::MouseClick, LEFT,701, 218,1
 ;Menú para elegir modo
