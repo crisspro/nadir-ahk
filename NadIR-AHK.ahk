@@ -3,11 +3,11 @@
 ;Año: 2020
 ;Licencia: GPL-3.0
 
-version:= "1.2"
 
 #include nvda.ahk
 SetTitleMatchMode,2
-#IfWinActive,NadIR 
+#IfWinActive,NadIR
+
 ;sonido de inicio
 SoundPlay,sounds/start.wav
 ;mensaje de inicio
@@ -34,7 +34,7 @@ return
 ; anterior impulso del canal 1
 d::
 {
-MouseClick, LEFT,111, 221,h1
+MouseClick, LEFT,111, 221,1
 if (InStr(A_language,"0a") = "3")
 nvdaSpeak("Anterior")
 else
@@ -152,4 +152,24 @@ nvdaSpeak("Channel 2 on")
 Return
 }
 Return
+}
+
+f1::
+{
+if (InStr(A_language,"0a") = "3")
+Run Documentation\es.htm
+else
+Run Documentation\en.htm
+Return
+}
+
+q::
+{
+if (InStr(A_language,"0a") = "3")
+nvdaSpeak("NadIR-AHK cerrado")
+else
+nvdaSpeak("NadIr-AHK closed")
+SoundPlay,sounds/exit.wav,1
+ExitApp
+return
 }
