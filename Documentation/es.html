@@ -1,0 +1,162 @@
+<h1>
+Ayuda de NadIR-AHK
+</h1>
+<p>
+NadIR-AHK es un script para usar el plugin VST NadIR con lectores de pantalla.</p>
+<p>Debería funcionar con cualquier secuenciador. Probado con:
+</p>
+<ul>
+<li>NadIR 1.0 32bits.</li>
+<li>Reaper 6.11 64bits y Audacity 2.4.2.</li>
+<li>Windows 10 64bits.</li>
+</ul>
+<p>
+Licencia GPL-3.0</p><p>Código fuente y últimas versiones:
+</p>
+<a href="https://github.com/crisspro/nadir-ahk">
+https://github.com/crisspro/nadir-ahk
+</a>
+<h2>
+Instrucciones
+</h2>
+<ol>
+<li>Abre NadIR-AHK</li>
+<li>Abre NadIR desde tu secuenciador.</li>
+<li>Usa los atajos de teclado del script.</li>
+<li>Para cerrar el script haz clic derecho sobre el ícono de la bandeja del sistema y ve a la opción "exit".  </li>
+</ol>
+<h2>
+Sobre NadIR
+</h2>
+<p>
+NadIR es un plugín vst gratuito desarrollado por igniteamps para Mac y Windows de 32 y 64 byts, cuya función es cargar impulsos de respuesta para instrumentos como bajos o guitarras. Un impulso es un archivo (preferentemente en formato WAV) que posee parámetros de ecualización predefinidos. Esta ecualización emula los altavoces de un amplificador de guitarra o bajo tradicionales, de manera que al añadirlo después de un plugín de distorsión, se consigue un efecto natural.</p><p>Puedes conseguir variados packs de impulsos gratuitos navegando por la red. </p><p>Visita: 
+</p>
+<a href="http://www.igniteamps.com/">
+http://www.igniteamps.com/
+</a>
+<h2>
+Funciones de NadIR
+</h2>
+<ul>
+<li>Filtro pasa altos.</li>
+<li>Filtro pasa bajos.</li>
+<li>Panoramización.</li>
+<li>Balance.</li>
+<li>Delay.</li>
+<li>Modos (mono, doble mono, estéreo).</li>
+<li>Calidad (baja, normal, alta, extrema), a mayor calidad utiliza más recursos del PC.</li>
+<li>Botón de encendido y apagado para el canal 1.</li>
+<li>Botón de encendido y apagado para el canal 2.</li>
+<li>Botón de encendido y apagado total .</li>
+</ul>
+<p>
+Nota:
+Todos estos parámetros pueden ser cambiados desde el secuenciador como ocurre con la mayoría de efectos.
+</p>
+<h2>
+Cargando un impulso
+</h2>
+<p>
+Cargar un impulso es muy sencillo:
+<ol>
+<li>Presiona “1”. Se abrirá una ventana para buscar el impulso, una vez lo encuentres le das 
+a enter y listo. Ojo que Si al cargar un impulso vuelve a abrirse la ventana para buscar el archivo, solo presiona escape.</li>
+<li>Si hay mas de un impulso en la misma carpeta, puedes presionar “k” para cambiar al siguiente impulso y con “j” vas al impulso anterior.</li>
+</ol>
+</p>
+<h2>
+Activando el modo estéreo
+</h2>
+<p>
+NadIR permite usarlo en modo estéreo. Esto significa que se puede lograr un sonido envolvente con una sola guitarra, ya que sonará por ambos auriculares, simulando ser dos guitarras al mismo tiempo. A su vez, es posible cargar un impulso diferente para cada lado del campo estéreo (izquierdo y derecho).
+Una vez cargado el impulso para el canal 1 (canal por defecto apenas se abre NadIR), si quieres activar el efecto estéreo has lo siguiente:
+<ol>
+<li>Desplegar el menú "modo" presionando “m” y escoger la opción estéreo.</li>
+<li>Encender el segundo canal presionando alt+2.</li>
+<li>Cargar el impulso presionando “2”.</li>
+<li>Desde el secuenciador poner el delay2 a las 20ms (20 milisegundos).</li>
+</ol>
+</p>
+<h2>
+Atajos de teclado
+</h2>
+<table>
+<tr>
+<th>Atajo</th>
+<th>Descripción</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Abre la ventana para cargar los impulsos en el canal 1 (canal por defecto).</td>
+</tr>
+
+<tr>
+<td>F</td>
+<td>Cambia al siguiente impulso del canal 1.</td>
+</tr>
+
+<tr>
+<td>D</td>
+<td>Cambia al  impulso anterior del canal 1.</td>
+</tr>
+
+<tr>
+<td>S</td>
+<td>Despliega la lista de impulsos en la carpeta del canal 1</td>
+</tr>
+
+<tr>
+<td>M</td>
+<td>Despliega un menú para cambiar entre los modos mono, doble mono o estéreo.</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>Despliega un menú para cambiar la calidad de sonido.</td>
+</tr>
+
+<tr>
+<td>Alt+1</td>
+<td>Activa y desactiva el canal 1 (está activo por defecto)</td>
+</tr>
+
+<tr>
+<td>Alt+2</td>
+<td>Activa y desactiva el canal 2 (está desactivo por defecto).</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Abre la ventana para cargar impulsos en el canal 2.</td>
+</tr>
+
+<tr>
+<td>K</td>
+<td>Cambia al siguiente impulso del canal 2.</td>
+</tr>
+
+<tr>
+<td>J</td>
+<td>Cambia al impulso anterior del canal 2.</td>
+</tr>
+
+<tr>
+<td>L</td>
+<td>Despliega la lista de impulsos en la carpeta del canal 2</td>
+</tr>
+
+<tr>
+<td>Alt+3</td>
+<td>Enciende y apaga Nadir (está encendido por defecto).</td>
+</tr>
+
+<tr>
+<td>F1</td>
+<td>Abre la ayuda del script</td>
+</tr>
+
+
+<tr>
+<td>CTRL+q</td><td>Cierra el script</td>
+</tr>

@@ -6,97 +6,129 @@
 
 #include nvda.ahk
 SetTitleMatchMode,2
-#IfWinActive,NadIR
 
-;sonido de inicio
-SoundPlay,sounds/start.wav
-;mensaje de inicio
+ScriptNombre:= "NadIR-AHK"
+VSTNombre:= "NadIR"
+VSTControl:= "VSTGUI"
+
+xg:= 0
+yg:= 0
+VSTControlDetectado:= False
+VSTNombreDetectado:= False
+
+
+;Funciones
+
+;habla mensajes
+hablar(es, en)
+{
 if (InStr(A_language,"0a") = "3")
-nvdaSpeak("NadIR-AHK activado")
+nvdaSpeak(es)
 else
-nvdaSpeak("NadIR-AHK ready")
+nvdaSpeak(en)
 Return
+}
+
+;inicio del script
+SoundPlay,sounds/start.wav
+hablar(ScriptNombre " activado",ScriptNombre " ready")
+
+;detecta el plugin
+loop
+{
+WinGet, VentanaID,Id,A
+winget, controles, ControlList, A
+IfWinActive,%VSTNombre%
+{
+VSTNombreDetectado:= True
+loop, parse, controles, `n
+{
+if A_LoopField contains %VSTControl%
+{
+VSTControlDetectado:= True
+ControlGetPos, x,y,a,b,%A_loopField%, ahk_id %VentanaID% 
+xg:= x
+yg:= y
+break
+}
+else
+VSTControlDetectado:= False
+}
+}
+else
+VSTNombreDetectado:= False
+}
+
+
+;atajos
+#If VSTControlDetectado= True and VSTNombreDetectado= True
+
 
 ;cargar impulso del canal 1 
-1::MouseClick,LEFT,132,202,1
+1::MouseClick,LEFT, xg+124, yg+171,1
 
 ;siguiente impulso del canal 1
 f::
 {
-MouseClick,LEFT,368,219,1
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Siguiente")
-else
-nvdaSpeak("Next")
+MouseClick,LEFT, xg+360, yg+188,1
+hablar("siguiente","next")
 return
 }
 
 ; anterior impulso del canal 1
 d::
 {
-MouseClick, LEFT,111, 221,1
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Anterior")
-else
-nvdaSpeak("Back")
+MouseClick, LEFT, xg+103, yg+188,1
+hablar("anterior", "back")
 return
 }
 
 ; lista de impulsos del canal 1
-s::MouseClick LEFT,228,216,ass 1
+s::MouseClick LEFT, xg+220, yg+188,1
 
 ; cargar impulso del canal 2
-2::MouseClick, LEFT,570, 205,1
+2::MouseClick, LEFT, xg+562, yg+174,1
 
 ;siguiente impulso del canal 2
 k::
 {
-MouseClick, LEFT,793, 221,1
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Siguiente")
-else
-nvdaSpeak("Next")
+MouseClick, LEFT, xg+785, yg+190,1
+hablar("siguiente", "next")
 return
 }
 
 ;anterior impulso del canal 2
 j::
 {
-MouseClick, LEFT,540,222,1
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Anterior")
-else
-nvdaSpeak("Back")
+MouseClick, LEFT, xg+532,yg+190,1
+hablar("anterior", "back")
 return
 }
 
 ;lista de impulsos del canal 2
-l::MouseClick, LEFT,701, 218,1
+l::MouseClick, LEFT, xg+670, yg+190,1
+
 ;Menú para elegir modo
-m::MouseClick LEFT,516,60,1
+m::MouseClick LEFT, xg+508, yg+29,1
+
 ;Menú para cambiar calidad
-c::MouseClick,LEFT,741, 141,1
+c::MouseClick,LEFT, xg+631, yg+26,1
+
 ;activa y desactiva NadIR
 !3::
 {
-MouseClick,LEFT,379, 52,1
-PixelGetColor,color3,379,52
+MouseClick,LEFT, xg+371, yg+21,1
+PixelGetColor,color3, xg+371, yg+21
 if (color3=0xF2F2F2)
 {
 SoundPlay,sounds/off.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("NadIR apagado")
-else
-nvdaSpeak("NadIR off")
+hablar("NadIR apagado", "NadIR off")
 Return
 }
 else
 {
 SoundPlay,sounds/on.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("NadIR encendido")
-else
-nvdaSpeak("NadIR on")
+hablar("NadIR encendido", "NadIR on")
 Return
 }
 Return
@@ -105,24 +137,18 @@ Return
 ;activa y desactiva el canal 1
 !1::
 {
-MouseClick,LEFT,115,199,1
-PixelGetColor,color1,115,199
+MouseClick,LEFT, xg+107, yg+168,1
+PixelGetColor,color1, xg+107, yg+168
 if (color1=0x202020)
 {
 SoundPlay,sounds/off.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Canal 1 apagado")
-else
-nvdaSpeak("Channel 1 off")
+hablar("Canal 1 apagado", "Channel 1 off")
 Return
 }
 else
 {
 SoundPlay,sounds/on.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Canal 1 encendido")
-else
-nvdaSpeak("Channel 1 on")
+hablar("Canal 1 encendido", "Channel 1 on")
 Return
 }
 Return
@@ -131,24 +157,18 @@ Return
 ;activa y desactiva el canal 2
 !2::
 {
-MouseClick,LEFT,535,199,1
-PixelGetColor,color2,535,199
+MouseClick,LEFT, xg+527,yg+168,1
+PixelGetColor,color2, xg+527, yg+168
 if (color2=0x999999)
 {
 SoundPlay,sounds/off.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Canal 2 apagado")
-else
-nvdaSpeak("Channel 2 off")
+hablar("Canal 2 apagado", "Channel 2 off")
 Return
 }
 else
 {
 SoundPlay,sounds/on.wav
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("Canal 2 encendido")
-else
-nvdaSpeak("Channel 2 on")
+hablar("Canal 2 encendido", "Channel 2 on")
 Return
 }
 Return
@@ -157,18 +177,15 @@ Return
 f1::
 {
 if (InStr(A_language,"0a") = "3")
-Run Documentation\es.htm
+Run Documentation\es.html
 else
-Run Documentation\en.htm
+Run Documentation\en.html
 Return
 }
 
-q::
+^q::
 {
-if (InStr(A_language,"0a") = "3")
-nvdaSpeak("NadIR-AHK cerrado")
-else
-nvdaSpeak("NadIr-AHK closed")
+hablar(ScriptNombre " cerrado",ScriptNombre " closed")
 SoundPlay,sounds/exit.wav,1
 ExitApp
 return
