@@ -4,9 +4,6 @@
 ;Licencia: GPL-3.0
 
 
-#include nvda.ahk
-SetTitleMatchMode,2
-
 ScriptNombre:= "NadIR-AHK"
 VSTNombre:= "NadIR"
 VSTControl:= "VSTGUI"
@@ -20,17 +17,50 @@ VSTNombreDetectado:= False
 ;Funciones
 
 ;habla mensajes
-hablar(es, en)
+;Carga NVDA
+nvdaSpeak(text)
 {
+Return DllCall("nvdaControllerClient" A_PtrSize*8 ".dll\nvdaController_speakText", "wstr", text)
+}
+
+hablar(es,en)
+{
+Lector:= "otro"
+process, Exist, nvda.exe
+if ErrorLevel != 0
+{
+Lector:= "nvda"
 if (InStr(A_language,"0a") = "3")
 nvdaSpeak(es)
 else
 nvdaSpeak(en)
-Return
+}
+process, Exist, jfw.exe
+if ErrorLevel != 0
+{
+Lector:= "jaws"
+Jaws := ComObjCreate("FreedomSci.JawsApi")
+if (InStr(A_language,"0a") = "3")
+Jaws.SayString(es)
+else
+Jaws.SayString(en)
+}
+If global Lector = "otro"
+{
+Sapi := ComObjCreate("SAPI.SpVoice")
+Sapi.Rate := 5
+Sapi.Volume :=90
+if (InStr(A_language,"0a") = "3")
+Sapi.Speak(es)
+else
+Sapi.Speak(en)
+}
 }
 
+SetTitleMatchMode,2
+
 ;inicio del script
-SoundPlay,sounds/start.wav
+SoundPlay,sounds/start.wav, 1
 hablar(ScriptNombre " activado",ScriptNombre " ready")
 
 ;detecta el plugin
